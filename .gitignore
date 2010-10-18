@@ -1,1 +1,5 @@
 DatabaseConnector.java
+RestaurantVoter/build/*
+RestaurantVoter/dist/*
+RestaurantVoter/RestaurantVoter-war/build/*
+RestaurantVoter/RestaurantVoter-war/dist/*
