@@ -4,9 +4,17 @@
         <servlet-name>restaurantVoter</servlet-name>
         <servlet-class>food.voter.web.RestaurantVoter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CRUD</servlet-name>
+        <servlet-class>food.voter.web.admin.CRUD</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>restaurantVoter</servlet-name>
         <url-pattern>/restaurantvoter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CRUD</servlet-name>
+        <url-pattern>/restaurantvoter/admin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -16,5 +16,6 @@
     <body>
         <h1>Hello World!</h1>
         <a href="restaurantvoter">Restaurant Voter</a>
+        <a href="restaurantvoter/admin">Restaurant Admin</a>
     </body>
 </html>

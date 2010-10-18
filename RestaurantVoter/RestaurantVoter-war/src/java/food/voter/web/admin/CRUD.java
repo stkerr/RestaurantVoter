@@ -2,21 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package food.voter.web;
+package food.voter.web.admin;
 
-import food.voter.model.DatabaseConnector;
-import food.voter.model.RestaurantModel;
-
-import java.sql.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,10 +16,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stkerr
  */
-public class RestaurantVoter extends HttpServlet
+public class CRUD extends HttpServlet
 {
 
-    /**
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -45,19 +35,8 @@ public class RestaurantVoter extends HttpServlet
         PrintWriter out = response.getWriter();
         try
         {
-            /* Insert the names into a list */
-            List<String> choiceList = RestaurantModel.retrieveNames();
-            
-            /* Pass the list along */
-            request.setAttribute("choices", choiceList.toArray(new String[0]));
-
-            /* Forward the request */
-            RequestDispatcher dispatch = request.getRequestDispatcher("voteform.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("admin/crud.jsp");
             dispatch.forward(request, response);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
         }
         finally
         {
@@ -77,38 +56,16 @@ public class RestaurantVoter extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        System.out.println(request.getParameterMap().keySet().toString());
-        System.out.println(request.getParameter("choiceNumber"));
-
-
+        PrintWriter out =
+                response.getWriter();
         try
         {
-            /* Figure out which choice was made */
-            String choice = request.getParameter("choiceNumber");
-
-            /* Increment the choice */
-            RestaurantModel.incrementRestaurantVote(choice);
-
-            /* Insert the results into the map */
-            Map<String, Integer> resultMap = RestaurantModel.retrieveResultsMap();
-
-            /* Pass the map along */
-            request.setAttribute("results", resultMap);
-
-            /* Forward to the results page */
-            RequestDispatcher dispatch = request.getRequestDispatcher("voteresults.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("admin/crud.jsp");
             dispatch.forward(request, response);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
         }
         finally
         {
             out.close();
-
         }
     }
 
