@@ -1,0 +1,37 @@
+/* 
+    Document   : style
+    Created on : Oct 18, 2010, 12:53:28 PM
+    Author     : stkerr
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+root { 
+    display: block;
+}
+
+table {
+    text-align: center;
+    
+}
+
+td {
+ margin-bottom: 1em;
+ margin-top: 1em;
+ padding-left: 10px;
+ padding-right: 10px;
+}
+
+button {
+    margin: 2px;
+    padding: 2px;
+}

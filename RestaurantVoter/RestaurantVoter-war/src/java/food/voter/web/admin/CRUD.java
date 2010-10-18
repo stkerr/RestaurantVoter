@@ -4,8 +4,10 @@
  */
 package food.voter.web.admin;
 
+import food.voter.model.RestaurantModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,14 @@ public class CRUD extends HttpServlet
         PrintWriter out = response.getWriter();
         try
         {
-            RequestDispatcher dispatch = request.getRequestDispatcher("admin/crud.jsp");
+            /* Get the list of names to send along */
+             Map<String, Integer> names = RestaurantModel.retrieveResultsMap();
+
+            /* Assign the names to the request */
+            request.setAttribute("choices", names);
+
+            /* Forward to the JSP */
+            RequestDispatcher dispatch = request.getRequestDispatcher("/admin/crud.jsp");
             dispatch.forward(request, response);
         }
         finally
@@ -60,7 +69,7 @@ public class CRUD extends HttpServlet
                 response.getWriter();
         try
         {
-            RequestDispatcher dispatch = request.getRequestDispatcher("admin/crud.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("../admin/crud.jsp");
             dispatch.forward(request, response);
         }
         finally
