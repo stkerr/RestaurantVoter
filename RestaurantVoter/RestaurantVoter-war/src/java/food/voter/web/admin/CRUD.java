@@ -67,10 +67,27 @@ public class CRUD extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out =
                 response.getWriter();
+
+        System.out.println(request.getParameterMap().keySet().toString());
+        System.out.println(request.getParameter("choiceNumber"));
+
         try
         {
-            RequestDispatcher dispatch = request.getRequestDispatcher("../admin/crud.jsp");
-            dispatch.forward(request, response);
+            if(request.getParameter("new_entry") != null)
+            {
+                RestaurantModel.insertNewRestaurant(request.getParameter("new_entry"));
+            }
+            else if(request.getParameter("delete_entry") != null)
+            {
+                RestaurantModel.deleteEntry(request.getParameter("delete_entry"));
+            }
+            else if(request.getParameter("reset_votes") != null)
+            {
+                RestaurantModel.resetAllVotes();
+            }
+            
+            /* Redirect to CRUD as a GET page*/
+            response.sendRedirect("admin");
         }
         finally
         {

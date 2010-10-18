@@ -22,6 +22,55 @@ import java.util.Map;
  */
 public class RestaurantModel
 {
+    public static void deleteEntry(String name)
+    {
+
+    }
+    
+    public static void resetAllVotes()
+    {
+        try
+        {
+            Connection connection = DatabaseConnector.openDatabaseConnection();
+            Statement statement = connection.createStatement();
+
+            /* Execute the query */
+            statement = connection.createStatement();
+            statement.executeUpdate("UPDATE restaurant SET votes = 0;");
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println("SQL Exception in retrieveNames(): " + e.getMessage());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertNewRestaurant(String name)
+    {
+        try
+        {
+            Connection connection = DatabaseConnector.openDatabaseConnection();
+            Statement statement = connection.createStatement();
+
+            /* Execute the query */
+            statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO restaurant (name) VALUES ('" + name + "')");
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println("SQL Exception in retrieveNames(): " + e.getMessage());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<String> retrieveNames()
     {
         try
@@ -115,4 +164,3 @@ public class RestaurantModel
         }
     }
 }
-

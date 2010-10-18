@@ -18,6 +18,13 @@
         <link rel="stylesheet" type="text/css" href="../style.css" />
     </head>
     <body>
+        <h2>Create a New Entry</h2>
+        <form method="post">
+            Restaurant Name<input type="text" name="new_entry">
+            <input type="submit">
+        </form>
+
+        <h2>Delete Existing Data</h2>
         <%
             /* Validate that we got the available choices */
             if (request.getAttribute("choices") == null)
@@ -52,9 +59,10 @@
             %>
                 <tr>
                     <form method="post">
+                        <input type="hidden" name="delete_entry" value="<%= currentElement %>">
                         <td><%= currentElement %></td>
                         <td><%= resultList.get(currentElement) %></td>
-                        <td><input type="submit" value ="Delete" name="<%= currentElement %>"</td>
+                        <td><input type="submit" name="<%= currentElement %>"</td>
                     </form>
                 </tr>
             <%
@@ -65,5 +73,12 @@
         <%
             }
         %>
+
+        <h2>Update Data</h2>
+        <form method="post">
+            <input type="hidden" name="reset_votes" value="YES">
+            <input type="submit" value="Reset All Votes">
+        </form>
+        
     </body>
 </html>
