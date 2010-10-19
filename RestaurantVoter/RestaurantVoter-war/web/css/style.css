@@ -35,3 +35,18 @@ button {
     margin: 2px;
     padding: 2px;
 }
+
+div#supercontainer {
+    display:block;
+}
+div#left {
+    float: left;
+}
+
+div#middle {
+    float: left;
+}
+
+div#right {
+    float: left;
+}

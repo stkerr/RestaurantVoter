@@ -16,70 +16,78 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/threecolumn.css" />
     </head>
     <body>
-        <h2>Create a New Entry</h2>
-        <form method="post">
-            Restaurant Name<input type="text" name="new_entry">
-            <input type="submit">
-        </form>
+        <div class="colmask threecol"><div class="colmid"><div class="colleft">
+                    <div class="col1">
+                        <h2>Create a New Entry</h2>
+                        <form method="post">
+                            Restaurant Name<input type="text" name="new_entry">
+                            <input type="submit">
+                        </form>
+                    </div>
+                    <div class="col2">
+                        <h2>Delete Existing Data</h2>
+                        <%
+                                    /* Validate that we got the available choices */
+                                    if (request.getAttribute("choices") == null)
+                                    {
+                        %>
+                        Choices not available!
+                        <%                    }
+                                                            else
+                                                            {
+                        %>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Restaurant Name</td>
+                                    <td>Votes</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                                                                                /* Fetch the results map */
+                                                                                                Map<String, Integer> resultList = (Map<String, Integer>) (request.getAttribute("choices"));
 
-        <h2>Delete Existing Data</h2>
-        <%
-            /* Validate that we got the available choices */
-            if (request.getAttribute("choices") == null)
-            {
-        %>
-        Choices not available!
-        <%
-            }
-            else
-            {
-        %>
-        <table>
-            <thead>
-                <tr>
-                    <td>Restaurant Name</td>
-                    <td>Votes</td>
-                </tr>
-            </thead>
-            <tbody>
-            <%
-                /* Fetch the results map */
-                Map<String,Integer> resultList = (Map<String, Integer>)(request.getAttribute("choices"));
+                                                                                                /* Get a list of all the names */
+                                                                                                Set<String> names = resultList.keySet();
 
-                /* Get a list of all the names */
-                Set<String> names = resultList.keySet();
-
-                /* Iterate over all the names */
-                Iterator it = names.iterator();
-                while(it.hasNext())
-                {
-                    String currentElement = (String)it.next();
-            %>
-                <tr>
-                    <form method="post">
-                        <input type="hidden" name="delete_entry" value="<%= currentElement %>">
-                        <td><%= currentElement %></td>
-                        <td><%= resultList.get(currentElement) %></td>
-                        <td><input type="submit" name="<%= currentElement %>"</td>
-                    </form>
-                </tr>
-            <%
-                }
-            %>
-            </tbody>
-        </table>
-        <%
-            }
-        %>
-
-        <h2>Update Data</h2>
-        <form method="post">
-            <input type="hidden" name="reset_votes" value="YES">
-            <input type="submit" value="Reset All Votes">
-        </form>
-
-        <%@include file="/WEB-INF/jspf/footer.jspf" %>
+                                                                                                /* Iterate over all the names */
+                                                                                                Iterator it = names.iterator();
+                                                                                                while (it.hasNext())
+                                                                                                {
+                                                                                                    String currentElement = (String) it.next();
+                                %>
+                                <tr>
+                            <form method="post">
+                                <input type="hidden" name="delete_entry" value="<%= currentElement%>">
+                                <td><%= currentElement%></td>
+                                <td><%= resultList.get(currentElement)%></td>
+                                <td><input type="submit" value="Delete Entry" name="<%= currentElement%>"</td>
+                            </form>
+                            </tr>
+                            <%
+                                                                                            }
+                            %>
+                            </tbody>
+                        </table>
+                        <%
+                                    }
+                        %>
+                    </div>
+                    <div class="col3">
+                        <h2>Update Data</h2>
+                        <form method="post">
+                            <input type="hidden" name="reset_votes" value="YES">
+                            <input type="submit" value="Reset All Votes">
+                        </form>
+                    </div>
+                </div>
+            </div></div>
+        <div id="footer">
+            <%@include file="/WEB-INF/jspf/footer.jspf" %>
+        </div>
     </body>
 </html>

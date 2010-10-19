@@ -7,7 +7,7 @@ package food.voter.model;
 
 //~--- JDK imports ------------------------------------------------------------
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,16 +28,20 @@ public class RestaurantModel
         try
         {
             Connection connection = DatabaseConnector.openDatabaseConnection();
-            Statement statement = connection.createStatement();
+            String query = "DELETE FROM restaurant WHERE name = ?;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
 
             /* Execute the query */
-            statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM restaurant WHERE name = \"" + name + "\";");
+            statement.addBatch();
+            statement.execute();
 
+            /* Close the database */
+            connection.close();
         }
         catch (SQLException e)
         {
-            System.out.println("SQL Exception in retrieveNames(): " + e.getMessage());
+            System.out.println("SQL Exception in deleteEntry(): " + e.getMessage());
         }
         catch (Exception e)
         {
@@ -59,7 +63,7 @@ public class RestaurantModel
         }
         catch (SQLException e)
         {
-            System.out.println("SQL Exception in retrieveNames(): " + e.getMessage());
+            System.out.println("SQL Exception in resetAllVotes(): " + e.getMessage());
         }
         catch (Exception e)
         {
@@ -72,16 +76,22 @@ public class RestaurantModel
         try
         {
             Connection connection = DatabaseConnector.openDatabaseConnection();
-            Statement statement = connection.createStatement();
+
+            String query = "INSERT INTO restaurant (name) VALUES (?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
 
             /* Execute the query */
-            statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO restaurant (name) VALUES ('" + name + "')");
+            statement.addBatch();
+            statement.execute();
+
+            /* Close the database */
+            connection.close();
 
         }
         catch (SQLException e)
         {
-            System.out.println("SQL Exception in retrieveNames(): " + e.getMessage());
+            System.out.println("SQL Exception in insertNewRestaurant(): " + e.getMessage());
         }
         catch (Exception e)
         {
@@ -158,12 +168,14 @@ public class RestaurantModel
     {
         try
         {
-
-            /* Increment the value that we received */
             Connection connection = DatabaseConnector.openDatabaseConnection();
-            Statement statement = connection.createStatement();
+            String query = "UPDATE restaurant SET votes = votes + 1 WHERE name = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
 
-            statement.executeUpdate("UPDATE restaurant SET votes = votes + 1 WHERE name = \"" + name + "\"");
+            /* Execute the query */
+            statement.addBatch();
+            statement.execute();
 
             /* Close the database */
             connection.close();
