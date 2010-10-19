@@ -23,5 +23,6 @@
                 out.print("<p>" + next + ":" + resultMap.get(next) + "</p>");
             }
         %>
+        <%@include file="/WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" type="text/css" href="../style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
     <body>
         <h2>Create a New Entry</h2>
@@ -79,6 +79,7 @@
             <input type="hidden" name="reset_votes" value="YES">
             <input type="submit" value="Reset All Votes">
         </form>
-        
+
+        <%@include file="/WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

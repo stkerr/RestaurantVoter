@@ -23,6 +23,7 @@ public class DatabaseConnector
             /*
              * DO NOT COMMIT YOUR PASSWORD
              */
+            Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection("jdbc:mysql://*/database_name", "*", "*");
         }
         catch (SQLException e)

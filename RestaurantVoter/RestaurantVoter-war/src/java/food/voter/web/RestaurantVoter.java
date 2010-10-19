@@ -52,7 +52,7 @@ public class RestaurantVoter extends HttpServlet
             request.setAttribute("choices", choiceList.toArray(new String[0]));
 
             /* Forward the request */
-            RequestDispatcher dispatch = request.getRequestDispatcher("/voteform.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("/jsp/voteform.jsp");
             dispatch.forward(request, response);
         }
         catch (Exception e)
@@ -98,7 +98,7 @@ public class RestaurantVoter extends HttpServlet
             request.setAttribute("results", resultMap);
 
             /* Forward to the results page */
-            RequestDispatcher dispatch = request.getRequestDispatcher("/voteresults.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("/jsp/voteresults.jsp");
             dispatch.forward(request, response);
         }
         catch (Exception e)

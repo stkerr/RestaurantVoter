@@ -14,8 +14,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href="restaurantvoter">Restaurant Voter</a>
-        <a href="restaurantvoter/admin">Restaurant Admin</a>
+        <%@include file="/WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CRUD extends HttpServlet
 {
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -44,7 +42,7 @@ public class CRUD extends HttpServlet
             request.setAttribute("choices", names);
 
             /* Forward to the JSP */
-            RequestDispatcher dispatch = request.getRequestDispatcher("/admin/crud.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("/jsp/admin/crud.jsp");
             dispatch.forward(request, response);
         }
         finally

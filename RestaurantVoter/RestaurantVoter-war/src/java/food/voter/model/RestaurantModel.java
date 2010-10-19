@@ -22,11 +22,29 @@ import java.util.Map;
  */
 public class RestaurantModel
 {
+
     public static void deleteEntry(String name)
     {
+        try
+        {
+            Connection connection = DatabaseConnector.openDatabaseConnection();
+            Statement statement = connection.createStatement();
 
+            /* Execute the query */
+            statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM restaurant WHERE name = \"" + name + "\";");
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println("SQL Exception in retrieveNames(): " + e.getMessage());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-    
+
     public static void resetAllVotes()
     {
         try
